@@ -1,7 +1,22 @@
 .App {
   text-align: center;
 }
-
+.nav-flex {
+  display: flex;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 480px) {
+  .nav-flex {
+    justify-content: space-evenly;
+  }
+}
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+/* .search-form {
+  display: flex;
+} */
 .App-logo {
   height: 40vmin;
   pointer-events: none;

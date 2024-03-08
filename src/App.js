@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import NavBar from "./components/NavBar";
+import News from "./components/News";
+import LoadingBar from "react-top-loading-bar";
+const App = () => {
+  const pageSize = 6;
+  const apiKey = process.env.REACT_APP_NEWS_API;
+  const [progress, setProgress] = useState(0);
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar />
+      <LoadingBar
+        height={3}
+        color="#f11946"
+        progress={progress}
+        // onLoaderFinished={() => setProgress(0)}
+      />
+
+      <News
+        setProgress={setProgress}
+        key="general"
+        apiKey={apiKey}
+        country="in"
+        pageSize={pageSize}
+        category="general"
+      />
     </div>
   );
-}
-
+};
 export default App;
