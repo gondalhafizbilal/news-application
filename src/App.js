@@ -4,27 +4,50 @@ import NavBar from "./components/NavBar";
 import News from "./components/News";
 import LoadingBar from "react-top-loading-bar";
 const App = () => {
-  const pageSize = 6;
-  const apiKey = process.env.REACT_APP_NEWS_API;
+  const pageSize = 10;
   const [progress, setProgress] = useState(0);
+
+  const [source, setSource] = useState("NewsAPI");
+  const [date, setDate] = useState("");
+  const [category, setCategory] = useState("");
+  const [author, setAuthor] = useState("");
+  const [keyword, setKeyword] = useState("");
 
   return (
     <div>
-      <NavBar />
+      <NavBar
+        source={source}
+        date={date}
+        category={category}
+        author={author}
+        keyword={keyword}
+        setSource={setSource}
+        setDate={setDate}
+        setCategory={setCategory}
+        setAuthor={setAuthor}
+        setKeyword={setKeyword}
+      />
       <LoadingBar
         height={3}
         color="#f11946"
         progress={progress}
         // onLoaderFinished={() => setProgress(0)}
       />
-
       <News
         setProgress={setProgress}
-        key="general"
-        apiKey={apiKey}
-        country="in"
+        apiKey={
+          source === "New York Times"
+            ? process.env.REACT_APP_NEW_YORK_TIMES_API
+            : source === "The Guardian"
+            ? process.env.REACT_APP_GUARDIAN_API
+            : process.env.REACT_APP_NEWS_API
+        }
         pageSize={pageSize}
-        category="general"
+        author={author ? author : ""}
+        category={category ? category : ""}
+        date={date ? date : ""}
+        keyword={keyword}
+        source={source}
       />
     </div>
   );

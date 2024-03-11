@@ -2,6 +2,7 @@ import React from "react";
 
 const NewsItem = (props) => {
   let { title, description, imageUrl, newsUrl, author, date, source } = props;
+
   return (
     <div className="card">
       <img
@@ -12,6 +13,7 @@ const NewsItem = (props) => {
         }
         className="card-img-top"
         alt="..."
+        height={300}
       />
       <div className="card-body">
         <h5 className="card-title">
@@ -38,5 +40,3 @@ const NewsItem = (props) => {
 };
 
 export default NewsItem;
-
-// Your API key is: b979697dd02d487f89090b90e68a89eb

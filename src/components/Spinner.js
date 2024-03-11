@@ -1,9 +1,13 @@
-import loading from "./loading.gif";
-
 const Spinner = () => {
   return (
     <div className="text-center">
-      <img src={loading} alt="loading" />
+      <div
+        class="spinner-border text-primary my-3"
+        role="status"
+        style={{ width: "60px", height: "60px" }}
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
   );
 };

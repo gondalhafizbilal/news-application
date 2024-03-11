@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 
-const NavBar = () => {
-  const [source, setSource] = useState();
-  const [date, setDate] = useState();
-  const [category, setCategory] = useState();
-  const [author, setAuthor] = useState();
+const NavBar = (props) => {
+  const sources = ["NewsAPI", "The Guardian", "New York Times"];
+  const [source, setSource] = useState(props.source);
+  const [date, setDate] = useState(props.date);
+  const [category, setCategory] = useState(props.category);
+  const [author, setAuthor] = useState(props.author);
+  const [keyword, setKeyword] = useState(props.keyword);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    props.setSource(source);
+    props.setDate(date);
+    props.setCategory(category);
+    props.setAuthor(author);
+    props.setKeyword(keyword);
+  };
 
   return (
     <div>
@@ -24,42 +35,95 @@ const NavBar = () => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="container-fluid nav-flex">
-              <form className="form-inline my-2 my-lg-0 search-form">
+            <div className="container nav-flex">
+              <form
+                className="form-inline my-2 my-lg-0 search-form"
+                onSubmit={handleSearch}
+              >
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item dropdown filters me-2">
-                    <label for="source">Source</label>
+                  <li className="nav-item dropdown filters mx-2">
+                    <label htmlFor="source">Source</label>
                     <button
                       type="button"
                       id="source"
-                      class="btn btn-primary dropdown-toggle"
+                      className="btn btn-primary dropdown-toggle btn-sm"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      Source
+                      {source}
                     </button>
-                    <ul class="dropdown-menu">
-                      <li className="dropdown-item">Source 1</li>
-                      <li className="dropdown-item">Source 2</li>
-                      <li className="dropdown-item">Source 3</li>
+                    <ul className="dropdown-menu">
+                      {sources.map((s) => {
+                        if (s !== source) {
+                          return (
+                            <li
+                              key={s}
+                              className="dropdown-item"
+                              onClick={() => {
+                                setSource(s);
+                              }}
+                            >
+                              {s}
+                            </li>
+                          );
+                        } else {
+                          return false;
+                        }
+                      })}
                     </ul>
                   </li>
                   <li className="nav-item mx-2">
-                    <label for="category">Category</label>
-                    <input className="form-control mr-sm-2" id="category" />
+                    <label htmlFor="category">Category</label>
+                    <input
+                      type="search"
+                      className="form-control mr-sm-2 p-1"
+                      placeholder="Enter"
+                      id="category"
+                      value={category}
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                      }}
+                    />
                   </li>
                   <li className="nav-item  mx-2">
-                    <label for="date">Date</label>
+                    <label htmlFor="date">Date</label>
                     <input
                       type="date"
                       id="date"
                       name="date"
-                      className="form-control mr-sm-2"
+                      placeholder="Enter"
+                      className="form-control mr-sm-2 p-1"
+                      value={date}
+                      onChange={(e) => {
+                        setDate(e.target.value);
+                      }}
                     />
                   </li>
                   <li className="nav-item mx-2">
-                    <label for="author">Author</label>
-                    <input className="form-control mr-sm-2" id="author" />
+                    <label htmlFor="author">Author</label>
+                    <input
+                      type="search"
+                      className="form-control mr-sm-2 p-1"
+                      placeholder="Enter"
+                      id="author"
+                      value={author}
+                      onChange={(e) => {
+                        setAuthor(e.target.value);
+                      }}
+                    />
+                  </li>
+                  <li className="nav-item mx-2">
+                    <label htmlFor="keyword">Keyword</label>
+                    <input
+                      type="search"
+                      className="form-control mr-sm-2 p-1"
+                      placeholder="Enter"
+                      id="keyword"
+                      value={keyword}
+                      onChange={(e) => {
+                        setKeyword(e.target.value);
+                      }}
+                    />
                   </li>
                   <li className="nav-item mt-4">
                     <button
