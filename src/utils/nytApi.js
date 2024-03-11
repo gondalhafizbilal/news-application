@@ -18,7 +18,7 @@ const getData = async (
   let filteredData = false;
   if (author) {
     filteredData = parsedData.response?.docs.filter((article) =>
-      article.byline.original.includes(author)
+      article.byline.original?.toLowerCase().includes(author.toLowerCase())
     );
   }
 

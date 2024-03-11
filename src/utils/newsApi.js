@@ -21,13 +21,13 @@ const getData = async (
     if (author && date) {
       dataMore = parsedData.articles.filter((article) => {
         return (
-          article.author === author &&
+          article.author?.toLowerCase().includes(author.toLowerCase()) &&
           article.publishedAt.split("T")[0] === date
         );
       });
     } else if (author) {
       dataMore = parsedData.articles.filter((article) => {
-        return article.author === author;
+        return article.author?.toLowerCase().includes(author.toLowerCase());
       });
     } else if (date) {
       dataMore = parsedData.articles.filter((article) => {
@@ -86,13 +86,13 @@ const getMoreData = async (
     if (author && date) {
       filteredData = parsedData.articles.filter((article) => {
         return (
-          article.author === author &&
+          article.author?.toLowerCase().includes(author.toLowerCase()) &&
           article.publishedAt.split("T")[0] === date
         );
       });
     } else if (author) {
       filteredData = parsedData.articles.filter((article) => {
-        return article.author === author;
+        return article.author?.toLowerCase().includes(author.toLowerCase());
       });
     } else if (date) {
       filteredData = parsedData.articles.filter((article) => {

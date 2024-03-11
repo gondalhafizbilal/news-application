@@ -67,7 +67,7 @@ const News = (props) => {
 
     props.setProgress(20);
     update();
-  }, [props.source, props.category, props.date, props.author, props.keyword]);
+  }, [props]);
 
   const fetchMoreData = async () => {
     let data;

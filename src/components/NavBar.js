@@ -99,7 +99,10 @@ const NavBar = (props) => {
                       }}
                     />
                   </li>
-                  <li className="nav-item mx-2">
+                  <li
+                    className="nav-item mx-2"
+                    hidden={source === "The Guardian"}
+                  >
                     <label htmlFor="author">Author</label>
                     <input
                       type="search"
