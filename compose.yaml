@@ -1,0 +1,15 @@
+services:
+  news-app:
+    build: .
+    ports:
+      - 3000:3000
+    command: npm start
+    develop:
+      watch:
+        - action: sync
+          path: ./
+          target: /src/news-app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json

@@ -7,7 +7,6 @@ dist
 
 // # Ignore development-related files
 .DS_Store
-.env
 *.log
 
 // # Ignore npm/yarn lock files
