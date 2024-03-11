@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import NewsApi from "../utils/newsApi";
 import GuardianApi from "../utils/guardianApi";
-import NewYorkTimesApi from "../utils/newYorkTimesApi";
+import NewYorkTimesApi from "../utils/nytApi";
 
 const News = (props) => {
   const [articles, setArticles] = useState([]);
