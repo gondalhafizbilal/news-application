@@ -27,12 +27,7 @@ const App = () => {
         setAuthor={setAuthor}
         setKeyword={setKeyword}
       />
-      <LoadingBar
-        height={3}
-        color="#f11946"
-        progress={progress}
-        // onLoaderFinished={() => setProgress(0)}
-      />
+      <LoadingBar height={3} color="#f11946" progress={progress} />
       <News
         setProgress={setProgress}
         apiKey={

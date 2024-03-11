@@ -4,7 +4,7 @@ const NewsItem = (props) => {
   let { title, description, imageUrl, newsUrl, author, date, source } = props;
 
   return (
-    <div className="card">
+    <div className="card shadow-hover">
       <img
         src={
           imageUrl
@@ -30,7 +30,7 @@ const NewsItem = (props) => {
           rel="noreferrer"
           href={newsUrl}
           target="_blank"
-          className="btn  btn-sm btn-primary"
+          className="btn btn-sm btn-primary fw-bold p-2"
         >
           Read More
         </a>
