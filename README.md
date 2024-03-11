@@ -49,6 +49,5 @@ To containerize the Frontend application using Docker, follow these steps:
 5. Open your web browser and navigate to http://localhost:3000
 
 ## Assumptions
-
-There was no image url available in **The Guardian** apis so, I used a dummy image, it also did not had any author in the articles so I skipped the author filter when the source **The Guardian** was selected.
-I used 3 apis and gave a source filter for it. In the articles where no image url was found in any of the apis I used a dummy image.
+I have used 3 apis as a source filter. So I can use 3 different apis at the same time. In the articles where no image url was found in any of the apis I used a dummy image.
+There was no author field available in **The Guardian** apis so I skipped the author filter when the source **The Guardian** was selected.
