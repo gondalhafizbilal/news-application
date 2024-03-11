@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+## News_Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A user interface for news aggregator website that pulls articles from various sources and displays them in a clean,
+easy-to-read format.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+1. node
+2. react
+3. bootstrap
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a front-end project developed using React.js for the purpose of creating a news aggregator website. The website pulls articles from various sources and displays them in a clean, easy-to-read format. Users can search for articles by keyword and filter the results by date, category, and source. Additionally, users can customize their news feed by selecting preferred sources, categories, and authors.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Data sources that are used for news
 
-### `npm test`
+1. **NewsAPI**: This is a comprehensive API that allows developers to access articles from more than 70,000 news sources, including major newspapers, magazines, and blogs. The API provides access to articles in various languages and categories, and it supports search and filtering.
+2. **The Guardian**: This API allows developers to access articles from The Guardian newspaper, one of the most respected news sources in the world. The API provides access to articles in various categories and supports search and filtering.
+3. **New York Times**: This API allows developers to access articles from The New York Times, one of the most respected news sources in the world. The API provides access to articles in various categories and supports search and filtering.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+1. Article search and filtering: Users can search for articles by keyword and filter the results by date, category, and source.
+2. Personalized news feed: Users can customize their news feed by selecting preferred sources, categories, and authors.
+3. Mobile-responsive design: The website is optimized for viewing on mobile devices.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Prerequisite
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Install node version > 16
+2. Install react version > 18
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Instructions to run app with Docker Containerization
 
-### `npm run eject`
+To containerize the Frontend application using Docker, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Rename `.env.sample` to `.env`
+2. Make sure Docker is installed on your machine.
+3. Build the Docker image and run the Docker container by running the following command in the project directory:
+   `Docker compose up`
+4. Open your web browser and navigate to http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Instructions to run app without containerization
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Rename `.env.sample` to `.env`
+2. Update the API Keys, you just need provide the keys for the api's used.
+3. `npm install`
+4. `npm start` (to start the app)
+5. Open your web browser and navigate to http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Assumptions
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+There was no image url available in **The Guardian** apis so, I used a dummy image, it also did not had any author in the articles so I skipped the author filter when the source **The Guardian** was selected.
+I used 3 apis and gave a source filter for it. In the articles where no image url was found in any of the apis I used a dummy image.
