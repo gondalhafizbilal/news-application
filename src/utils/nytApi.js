@@ -8,10 +8,11 @@ const getData = async (
   author
 ) => {
   const d = date.split("-");
+  const dat = date ? d[0] + d[1] + d[2] : "";
   const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?${
     keyword ? `q=${keyword}&` : ""
   }${category ? `fq=news_desk:(${category})&` : ""}${
-    date ? `begin_date=${d[0] + d[1] + d[2]}&` : ""
+    date ? `begin_date=${dat}&end_date=${dat}&` : ""
   }api-key=${apiKey}`;
   let data = await fetch(url);
   let parsedData = await data.json();

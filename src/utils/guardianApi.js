@@ -3,7 +3,7 @@ const getData = async (apiKey, page, category, keyword, date) => {
   const url = `https://content.guardianapis.com/search?page=${page}${
     keyword ? `&q=${keyword}` : ""
   }${category ? `&tag=${category}/${category}` : ""}${
-    date ? `&from-date=${date}` : ""
+    date ? `&from-date=${date}&to-date=${date}` : ""
   }&api-key=${apiKey}`;
   const data = await fetch(url);
   const parsedData = await data.json();
