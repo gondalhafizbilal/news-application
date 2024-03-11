@@ -5,8 +5,8 @@ const getData = async (apiKey, page, category, keyword, date) => {
   }${category ? `&tag=${category}/${category}` : ""}${
     date ? `&from-date=${date}` : ""
   }&api-key=${apiKey}`;
-  let data = await fetch(url);
-  let parsedData = await data.json();
+  const data = await fetch(url);
+  const parsedData = await data.json();
   return {
     articles: parsedData.response.results,
     totalArticles: parsedData.response.total,

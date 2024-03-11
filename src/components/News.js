@@ -7,7 +7,16 @@ import NewsApi from "../utils/newsApi";
 import GuardianApi from "../utils/guardianApi";
 import NewYorkTimesApi from "../utils/nytApi";
 
-const News = (props) => {
+const News = ({
+  source,
+  category,
+  date,
+  author,
+  keyword,
+  apiKey,
+  setProgress,
+  pageSize,
+}) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -18,86 +27,80 @@ const News = (props) => {
     setPage(1);
     setNotFound(false);
     setLoading(true);
-    props.setProgress(10);
+    setProgress(10);
 
     const update = async () => {
-      props.setProgress(30);
+      setProgress(30);
       let data;
-      if (props.source === "The Guardian") {
-        data = await GuardianApi.getData(
-          props.apiKey,
-          1,
-          props.category,
-          props.keyword,
-          props.date
-        );
-      } else if (props.source === "New York Times") {
+      if (source === "The Guardian") {
+        data = await GuardianApi.getData(apiKey, 1, category, keyword, date);
+      } else if (source === "New York Times") {
         data = await NewYorkTimesApi.getData(
-          props.apiKey,
-          props.pageSize,
+          apiKey,
+          pageSize,
           1,
-          props.category,
-          props.keyword,
-          props.date,
-          props.author
+          category,
+          keyword,
+          date,
+          author
         );
       } else {
         data = await NewsApi.getData(
-          props.apiKey,
-          props.pageSize,
+          apiKey,
+          pageSize,
           1,
-          props.category,
-          props.keyword,
-          props.date,
-          props.author
+          category,
+          keyword,
+          date,
+          author
         );
       }
       if (data.articles?.length > 0) {
-        props.setProgress(70);
+        setProgress(70);
         setArticles(data.articles);
-        props.setProgress(80);
+        setProgress(80);
         setTotalArticles(data.totalArticles);
       } else {
         setNotFound(true);
       }
-      props.setProgress(90);
+      setProgress(90);
       setLoading(false);
-      props.setProgress(100);
+      setProgress(100);
     };
 
-    props.setProgress(20);
+    setProgress(20);
     update();
-  }, [props]);
+  }, [source, category, date, author, keyword, pageSize, apiKey, setProgress]);
 
   const fetchMoreData = async () => {
     let data;
-    if (props.source === "The Guardian") {
+    if (source === "The Guardian") {
       data = await GuardianApi.getData(
-        props.apiKey,
+        apiKey,
         page + 1,
-        props.category,
-        props.keyword,
-        props.date
+        category,
+        keyword,
+        date
       );
-    } else if (props.source === "New York Times") {
+    } else if (source === "New York Times") {
       data = await NewYorkTimesApi.getData(
-        props.apiKey,
-        props.pageSize,
+        apiKey,
+        pageSize,
         page + 1,
-        props.category,
-        props.keyword,
-        props.date,
-        props.author
+        category,
+        keyword,
+        date,
+        author
       );
     } else {
       data = await NewsApi.getData(
-        props.apiKey,
-        props.pageSize,
+        apiKey,
+        pageSize,
         page + 1,
-        props.category,
-        props.keyword,
-        props.date,
-        props.author
+        category,
+        keyword,
+        date,
+        author
       );
     }
     setPage(page + 1);
@@ -107,8 +110,8 @@ const News = (props) => {
   useEffect(() => {}, [articles]);
   return (
     <div className="container my-3">
-      <h1 className="text-center main">{props.source} - Top Headlines</h1>
-      <h2 className="text-center">{props?.category?.toUpperCase()}</h2>
+      <h1 className="text-center main">{source} - Top Headlines</h1>
+      <h2 className="text-center">{category?.toUpperCase()}</h2>
       <hr />
       {loading && <Spinner />}
       {notFound ? (
